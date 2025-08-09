@@ -1,0 +1,71 @@
+2025-08-08T12:15:52.053+05:30 ERROR 15528 --- [log4j] [http-nio-8080-exec-1] c.e.log4j.controller.HomeController      : --Error--
+2025-08-08T12:15:52.054+05:30  WARN 15528 --- [log4j] [http-nio-8080-exec-1] c.e.log4j.controller.HomeController      : --WARN--
+2025-08-08T12:17:20.858+05:30  INFO 15528 --- [log4j] [restartedMain] com.example.log4j.Log4jApplication       : Starting Log4jApplication using Java 24.0.2 with PID 15528 (C:\Software\log4j\target\classes started by meman in C:\Software\log4j)
+2025-08-08T12:17:20.859+05:30  INFO 15528 --- [log4j] [restartedMain] com.example.log4j.Log4jApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-08-08T12:17:21.049+05:30  INFO 8880 --- [log4j] [restartedMain] com.example.log4j.Log4jApplication       : Starting Log4jApplication using Java 24.0.2 with PID 8880 (C:\Software\log4j\target\classes started by meman in C:\Software\log4j)
+2025-08-08T12:17:21.061+05:30  INFO 8880 --- [log4j] [restartedMain] com.example.log4j.Log4jApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-08-08T12:17:21.128+05:30  INFO 15528 --- [log4j] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-08T12:17:21.130+05:30  INFO 15528 --- [log4j] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-08T12:17:21.131+05:30  INFO 15528 --- [log4j] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-08T12:17:21.151+05:30  INFO 15528 --- [log4j] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-08T12:17:21.151+05:30  INFO 15528 --- [log4j] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 288 ms
+2025-08-08T12:17:21.154+05:30  INFO 8880 --- [log4j] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-08T12:17:21.154+05:30  INFO 8880 --- [log4j] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-08T12:17:21.257+05:30  INFO 15528 --- [log4j] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-08T12:17:21.275+05:30  INFO 15528 --- [log4j] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-08T12:17:21.279+05:30  INFO 15528 --- [log4j] [restartedMain] com.example.log4j.Log4jApplication       : Started Log4jApplication in 0.455 seconds (process running for 104.535)
+2025-08-08T12:17:21.282+05:30  INFO 15528 --- [log4j] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-08-08T12:17:22.195+05:30  INFO 8880 --- [log4j] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-08T12:17:22.211+05:30  INFO 8880 --- [log4j] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-08T12:17:22.212+05:30  INFO 8880 --- [log4j] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-08T12:17:22.251+05:30  INFO 8880 --- [log4j] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-08T12:17:22.251+05:30  INFO 8880 --- [log4j] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1096 ms
+2025-08-08T12:17:22.617+05:30  WARN 8880 --- [log4j] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2025-08-08T12:17:22.635+05:30  WARN 8880 --- [log4j] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2025-08-08T12:17:22.652+05:30  INFO 8880 --- [log4j] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2025-08-08T12:17:22.671+05:30 ERROR 8880 --- [log4j] [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2025-08-08T12:17:29.290+05:30  INFO 15528 --- [log4j] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-08T12:17:29.290+05:30  INFO 15528 --- [log4j] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-08T12:17:29.291+05:30  INFO 15528 --- [log4j] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-08-08T12:17:29.293+05:30 ERROR 15528 --- [log4j] [http-nio-8080-exec-1] c.e.log4j.controller.HomeController      : --Error--
+2025-08-08T12:17:29.293+05:30  WARN 15528 --- [log4j] [http-nio-8080-exec-1] c.e.log4j.controller.HomeController      : --WARN--
+2025-08-08T12:17:29.293+05:30  INFO 15528 --- [log4j] [http-nio-8080-exec-1] c.e.log4j.controller.HomeController      : --INFO--
+2025-08-08T12:17:41.642+05:30  INFO 4488 --- [log4j] [restartedMain] com.example.log4j.Log4jApplication       : Starting Log4jApplication using Java 24.0.2 with PID 4488 (C:\Software\log4j\target\classes started by meman in C:\Software\log4j)
+2025-08-08T12:17:41.644+05:30  INFO 4488 --- [log4j] [restartedMain] com.example.log4j.Log4jApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-08-08T12:17:41.708+05:30  INFO 4488 --- [log4j] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-08-08T12:17:41.708+05:30  INFO 4488 --- [log4j] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-08-08T12:17:42.577+05:30  INFO 4488 --- [log4j] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-08-08T12:17:42.593+05:30  INFO 4488 --- [log4j] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-08-08T12:17:42.594+05:30  INFO 4488 --- [log4j] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2025-08-08T12:17:42.644+05:30  INFO 4488 --- [log4j] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-08-08T12:17:42.645+05:30  INFO 4488 --- [log4j] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 936 ms
+2025-08-08T12:17:42.987+05:30  INFO 4488 --- [log4j] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-08-08T12:17:43.020+05:30  INFO 4488 --- [log4j] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-08-08T12:17:43.028+05:30  INFO 4488 --- [log4j] [restartedMain] com.example.log4j.Log4jApplication       : Started Log4jApplication in 1.822 seconds (process running for 2.186)
+2025-08-08T12:17:54.212+05:30  INFO 4488 --- [log4j] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-08-08T12:17:54.213+05:30  INFO 4488 --- [log4j] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-08-08T12:17:54.214+05:30  INFO 4488 --- [log4j] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-08-08T12:17:54.243+05:30 ERROR 4488 --- [log4j] [http-nio-8080-exec-1] c.e.log4j.controller.HomeController      : --Error--
+2025-08-08T12:17:54.243+05:30  WARN 4488 --- [log4j] [http-nio-8080-exec-1] c.e.log4j.controller.HomeController      : --WARN--
+2025-08-08T12:17:54.243+05:30  INFO 4488 --- [log4j] [http-nio-8080-exec-1] c.e.log4j.controller.HomeController      : --INFO--
+2025-08-08T12:17:55.269+05:30 ERROR 4488 --- [log4j] [http-nio-8080-exec-2] c.e.log4j.controller.HomeController      : --Error--
+2025-08-08T12:17:55.270+05:30  WARN 4488 --- [log4j] [http-nio-8080-exec-2] c.e.log4j.controller.HomeController      : --WARN--
+2025-08-08T12:17:55.270+05:30  INFO 4488 --- [log4j] [http-nio-8080-exec-2] c.e.log4j.controller.HomeController      : --INFO--
+2025-08-08T12:20:13.238+05:30 ERROR 4488 --- [log4j] [http-nio-8080-exec-5] c.e.log4j.controller.HomeController      : --Error--
+2025-08-08T12:20:13.239+05:30  WARN 4488 --- [log4j] [http-nio-8080-exec-5] c.e.log4j.controller.HomeController      : --WARN--
+2025-08-08T12:20:13.239+05:30  INFO 4488 --- [log4j] [http-nio-8080-exec-5] c.e.log4j.controller.HomeController      : --INFO--
