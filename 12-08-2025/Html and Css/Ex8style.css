@@ -1,0 +1,43 @@
+.main {
+    border: 2px solid black;
+    padding: 20px;
+    margin: 50px auto;
+    width: 300px;
+    background-color: lightpink; 
+}
+
+h1 {
+    color: black;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: black;
+    margin-bottom: 20px;
+}
+
+label {
+    color: #333;
+    margin-top: 10px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    margin: 8px 0 15px 0;
+    padding: 8px;
+    border: 1px solid #666;
+    background-color: #fff;
+}
+
+button {
+    padding: 8px 20px;
+    margin-top: 10px;
+    border: 1px solid #333;
+    background-color: black;
+    color: white;
+}
+
+form {
+    margin-top: 10px;
+}
