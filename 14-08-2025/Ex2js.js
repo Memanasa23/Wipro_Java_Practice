@@ -1,0 +1,7 @@
+let doubleNumbers = (arr) => arr.map(num => num * 2);
+
+let numbers = [1, 2, 3, 4];
+
+let doubled = doubleNumbers(numbers);
+
+console.log(doubled)
