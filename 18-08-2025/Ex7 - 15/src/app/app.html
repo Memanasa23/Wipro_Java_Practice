@@ -1,0 +1,48 @@
+<!-- Ex7 to 9 -->
+
+<!-- <h2>Enter Your Name</h2> 
+
+<input type="text" [(ngModel)]="myName" class="form-control mb-3" placeholder="Type your name">
+
+<p>You entered: <strong>{{ myName }}</strong></p>
+
+
+<button (click)="printName()" class="btn btn-primary">Print to Console</button> -->
+
+<!-- Ex10 -->
+<!-- <h2>Names List</h2>
+
+<ul>
+  @for (name of nameList; track $index) {
+  <li>{{ name }}</li>
+  }
+</ul> -->
+
+<!-- <h3>Ex11: Checkbox</h3>
+
+<label>
+  <input type="checkbox" [(ngModel)]="showMessage" />
+  Toggle Message
+</label>
+
+@if (showMessage) {
+  <p>Hello from Listcomp Component!</p>
+} @else {
+  <p>Message is hidden.</p>
+} -->
+
+<h3>Ex12: Country Dropdown</h3>
+
+<select>
+  <option value="">Select Country</option>
+  @for (country of dropdownList; track $index) {
+    <option>{{ country }}</option>
+  }
+</select>
+
+<br><br>
+
+<button (click)="loadCountries()">Load</button>
+
+
+
