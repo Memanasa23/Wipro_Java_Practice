@@ -1,0 +1,17 @@
+h2 {
+  text-align: center;
+  color: darkblue;
+}
+
+input {
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid gray;
+  border-radius: 4px;
+}
+
+p {
+  font-size: 18px;
+  font-weight: bold;
+  color: green;
+}

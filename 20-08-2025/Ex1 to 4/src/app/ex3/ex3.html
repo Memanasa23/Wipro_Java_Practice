@@ -1,0 +1,7 @@
+<h2 class="text-center">Ex3: Celsius to Fahrenheit</h2>
+
+<input type="number" [(ngModel)]="temperature" placeholder="Enter °C" />
+
+@if (temperature !== null) {
+  <p>Output: {{ temperature | cToF }}</p>
+}
