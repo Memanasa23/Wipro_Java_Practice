@@ -1,15 +1,19 @@
 package com.example.order_ms.service;
 
-import com.example.order_ms.dto.OrderResponse;
+import com.example.order_ms.client.FoodClient;
+import com.example.order_ms.dto.OrderRequest;
 import com.example.order_ms.entity.Order;
-import com.example.order_ms.model.Payment;
+import com.example.order_ms.entity.OrderItem;
 import com.example.order_ms.repository.OrderRepository;
-import com.example.order_ms.client.PaymentConnectService;
+import com.example.FoodService.entity.Food;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -18,36 +22,51 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private PaymentConnectService paymentConnectService;
+    private FoodClient foodClient;
 
-    public OrderResponse placeOrder(Order order) {
-        order.setOrderStatus("I");
-        orderRepository.save(order);  // Save order first
+    @Autowired
+    private KafkaTemplate<String, Order> kafkaTemplate;
 
-        Payment payment = new Payment();
-        payment.setOrderId(order.getId().intValue());
-        payment.setPaymentStatus(true);
+    public Order createOrder(OrderRequest request) {
+        Order order = new Order();
+        order.setUserId(request.getUserId());
+        order.setDeliveryAddress(request.getDeliveryAddress());
 
-        try {
-            ResponseEntity<Payment> response = paymentConnectService.savePaymentData(payment);
-            if (response.getStatusCode().is2xxSuccessful()) {
-                order.setOrderStatus("P"); // Paid
-                payment = response.getBody();
-            } else {
-                order.setOrderStatus("C"); // Cancelled
-            }
-        } catch (Exception e) {
-            order.setOrderStatus("C");
+        List<OrderItem> items = new ArrayList<>();
+        BigDecimal total = BigDecimal.ZERO;
+
+        for (OrderRequest.OrderItemRequest itemReq : request.getItems()) {
+            Food food = foodClient.getFoodById(itemReq.getFoodId());
+            OrderItem item = new OrderItem();
+            item.setFoodId(food.getId());
+            item.setFoodName(food.getName());
+            item.setQuantity(itemReq.getQuantity());
+            item.setPrice(food.getPrice());
+            item.setTotalPrice(food.getPrice().multiply(BigDecimal.valueOf(itemReq.getQuantity())));
+            items.add(item);
+            total = total.add(item.getTotalPrice());
         }
 
-        orderRepository.save(order); 
+        order.setItems(items);
+        order.setTotalAmount(total);
+        Order savedOrder = orderRepository.save(order);
 
-        // Prepare response
-        OrderResponse orderResponse = new OrderResponse();
-        orderResponse.setOrderNumber(order.getOrderNumber());
-        orderResponse.setOrderValue(order.getOrderValue());
-        orderResponse.setPayment(Collections.singletonList(payment)); 
+        kafkaTemplate.send("order-created", savedOrder);
 
-        return orderResponse;
+        return savedOrder;
+    }
+
+    public List<Order> getUserOrders(Long userId) {
+        return orderRepository.findByUserId(userId);
+    }
+
+    public Order getOrderById(Long id) {
+        return orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
+    }
+
+    public Order updateOrderStatus(Long id, String status) {
+        Order order = getOrderById(id);
+        order.setStatus(status);
+        return orderRepository.save(order);
     }
 }

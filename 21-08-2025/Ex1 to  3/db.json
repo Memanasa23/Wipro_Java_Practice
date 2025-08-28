@@ -12,7 +12,7 @@
       "make": "Tesla",
       "fuelType": "Electric",
       "model": "Model 3",
-      "price": 45000
+      "price": 26000
     },
     {
       "id": "3",
@@ -34,6 +34,13 @@
       "model": "Model 3",
       "fuelType": "Electric",
       "price": 750000
+    },
+    {
+      "id": "9af2",
+      "make": "",
+      "model": "",
+      "fuelType": "",
+      "price": 0
     }
   ]
 }

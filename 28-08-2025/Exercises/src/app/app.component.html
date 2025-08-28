@@ -1,0 +1,11 @@
+<h1>Palindrome Checker</h1>
+
+<input type="text" #word placeholder="Enter word" />
+<button (click)="result = isPalindrome(word.value)">Check</button>
+
+@if (result === true) {
+  <p>{{ word.value }} is Palindrome</p>
+}
+@else if (result === false) {
+  <p>{{ word.value }} NOT Palindrome</p>
+}

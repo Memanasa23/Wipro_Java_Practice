@@ -1,0 +1,74 @@
+<button mat-raised-button color="primary" (click)="isLinear = !isLinear" id="toggle-linear">
+  {{ !isLinear ? 'Enable linear mode' : 'Disable linear mode' }}
+</button>
+
+
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+
+  <mat-step [stepControl]="nameForm">
+    <form [formGroup]="nameForm">
+      <ng-template matStepLabel>Enter your Name</ng-template>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="John Doe" formControlName="nameCtrl" required />
+        @if (nameForm.get('nameCtrl')?.touched && nameForm.get('nameCtrl')?.invalid) {
+          <mat-error>
+            @if (nameForm.get('nameCtrl')?.errors?.['required']) { Name is required }
+            @if (nameForm.get('nameCtrl')?.errors?.['minlength']) { Minimum 2 characters }
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-raised-button color="primary" matStepperNext [disabled]="nameForm.invalid">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step [stepControl]="ageForm">
+    <form [formGroup]="ageForm">
+      <ng-template matStepLabel>Enter your Age</ng-template>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" placeholder="25" formControlName="ageCtrl" required />
+        @if (ageForm.get('ageCtrl')?.touched && ageForm.get('ageCtrl')?.invalid) {
+          <mat-error>
+            @if (ageForm.get('ageCtrl')?.errors?.['required']) { Age is required }
+            @if (ageForm.get('ageCtrl')?.errors?.['min']) { Must be at least 1 }
+            @if (ageForm.get('ageCtrl')?.errors?.['max']) { Must be ≤ 120 }
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-stroked-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext [disabled]="ageForm.invalid">Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="emailForm">
+    <form [formGroup]="emailForm">
+      <ng-template matStepLabel>Enter your Email</ng-template>
+
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="example@mail.com" formControlName="emailCtrl" required />
+        @if (emailForm.get('emailCtrl')?.touched && emailForm.get('emailCtrl')?.invalid) {
+          <mat-error>
+            @if (emailForm.get('emailCtrl')?.errors?.['required']) { Email is required }
+            @if (emailForm.get('emailCtrl')?.errors?.['email']) { Invalid email format }
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-stroked-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="accent" [disabled]="emailForm.invalid" (click)="stepper.reset()">Submit</button>
+      </div>
+    </form>
+  </mat-step>
+</mat-vertical-stepper>

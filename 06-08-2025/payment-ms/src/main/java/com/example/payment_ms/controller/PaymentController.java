@@ -1,30 +1,29 @@
 package com.example.payment_ms.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import com.example.payment_ms.entity.Payment;
 import com.example.payment_ms.service.PaymentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
-@RequestMapping("/payments")
+@RequestMapping("/api/payment")
+@CrossOrigin(origins = "*")
 public class PaymentController {
 
     @Autowired
-    private PaymentService service;
+    private PaymentService paymentService;
 
-    @PostMapping
-    public Payment createPayment(@RequestBody Payment payment) {
-        return service.savePayment(payment);
+    @PostMapping("/process/{orderId}")
+    public ResponseEntity<Payment> processPayment(@PathVariable Long orderId) {
+        Payment payment = paymentService.processPayment(orderId);
+        return ResponseEntity.ok(payment);
     }
 
-    @GetMapping("/orders/{orderId}")
-    public List<Payment> getPaymentsByOrderId(@PathVariable Long orderId) {
-        return service.getPaymentsByOrderId(orderId);
-    }
-
-    @GetMapping
-    public List<Payment> getAllPayments() {
-        return service.getAllPayments();
+    @GetMapping("/order/{orderId}")
+    public ResponseEntity<Payment> getPaymentByOrderId(@PathVariable Long orderId) {
+        Payment payment = paymentService.getPaymentByOrderId(orderId);
+        return ResponseEntity.ok(payment);
     }
 }
