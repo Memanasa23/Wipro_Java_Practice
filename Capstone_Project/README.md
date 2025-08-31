@@ -1,200 +1,140 @@
-\ Mini E-Commerce Application (Capstone Project)
+Mini E-Commerce Application (Capstone Project)
+Overview
 
+This project is a Mini E-Commerce Application built as part of the Capstone Assessment using Angular, Spring Boot, and MySQL.
 
+It demonstrates the implementation of a microservices architecture with role-based access control, enabling separate services for User Management, Product Management, and Order Management.
 
-\ Overview
+The application follows a sprint-based agile methodology and ensures scalability, modularity, and clean architecture.
 
-This project is a \*\*Mini E-Commerce Application\*\* built as part of the Capstone Assessment using \*\*Angular, Spring Boot, and MySQL\*\*.  
-
-It demonstrates the implementation of \*\*microservices architecture\*\* with role-based access control, enabling separate services for \*\*User Management\*\*, \*\*Product Management\*\*, and \*\*Order Management\*\*.
-
-
-
-The application follows a \*\*sprint-based agile methodology\*\* and ensures scalability, modularity, and clean architecture.
-
-
-
----
-
-
-
-\ Problem Statement
+Problem Statement
 
 Develop a mini e-commerce application where:
 
-\- \*\*Admins\*\* manage products (CRUD operations on the product catalog).
+Admins manage products (CRUD operations on the product catalog).
 
-\- \*\*Customers\*\* can register, browse products, add items to cart, and place/cancel orders.
+Customers can register, browse products, add items to cart, and place/cancel orders.
 
-\- \*\*Role-based access\*\* ensures admins manage products while customers manage their own orders.
+Role-based access ensures admins manage products while customers manage their own orders.
 
+Actors
 
+Admin
 
----
+Add, update, delete products
 
+Manage inventory
 
+Customer
 
-\ Actors
+Register and log in
 
-\- \*\*Admin\*\*
+Browse products and view details
 
-&nbsp; - Add, update, delete products.
+Manage cart and place/cancel orders
 
-&nbsp; - Manage inventory.
+Core Features
+User Management
 
-\- \*\*Customer\*\*
+Register and log in as a customer
 
-&nbsp; - Register and log in.
+Profile update and management
 
-&nbsp; - Browse products and view details.
+Role-based access control
 
-&nbsp; - Manage cart and place/cancel orders.
+Product Management (Admin only)
 
+Add new products with details (name, description, price, quantity)
 
+Update existing products
 
----
+Delete products
 
+View product catalog
 
+Order Management
 
-\ Core Features
+Add products to cart
 
-\ User Management
+Update or remove items from cart
 
-\- Register and log in as a customer.
+Place new orders
 
-\- Profile update and management.
+Cancel orders (with automatic stock update)
 
-\- Role-based access control.
+View order history
 
+Tech Stack
 
+Frontend: Angular, HTML, CSS, Bootstrap
 
-\ Product Management (Admin only)
+Backend: Spring Boot (Java 17/21)
 
-\- Add new products with details (name, description, price, quantity).
+Database: MySQL
 
-\- Update existing products.
+API Documentation: Swagger
 
-\- Delete products.
+Architecture: Microservices (User MS, Product MS, Order MS)
 
-\- View product catalog.
+Optional Integration: Kafka for async communication
 
+System Architecture
 
+User Management Microservice
 
-\ Order Management
+Product Management Microservice
 
-\- Add products to cart.
+Order Management Microservice
 
-\- Update or remove items from cart.
+Each service is independent, follows layered architecture (Controller → Service → Repository → Entity), and exposes REST APIs.
 
-\- Place new orders.
+API Endpoints (Sample)
+User Service
 
-\- Cancel orders (with automatic stock update).
+POST /user → Create User
 
-\- View order history.
+PUT /user → Update User
 
+DELETE /user → Delete User
 
+GET /user → Get All Users
 
----
+GET /user/{id} → Get User by ID
 
+POST /user/login → User Login
 
+Product Service
 
-\ Tech Stack
+POST /product → Create Product
 
-\- \*\*Frontend:\*\* Angular, HTML, CSS, Bootstrap  
+PUT /product → Update Product
 
-\- \*\*Backend:\*\* Spring Boot (Java 17/21)  
+DELETE /product → Delete Product
 
-\- \*\*Database:\*\* MySQL  
+GET /product → List All Products
 
-\- \*\*API Documentation:\*\* Swagger  
+GET /product/{id} → Get Product Details
 
-\- \*\*Architecture:\*\* Microservices (User MS, Product MS, Order MS)  
+Order Service
 
-\- \*\*Optional Integration:\*\* Kafka for async communication  
+POST /cart/addProd → Add Product to Cart
 
+PUT /cart/update → Update Cart Item Quantity
 
+DELETE /cart/deleteProd/{id} → Remove Cart Item
 
----
+POST /order → Place Order
 
+PUT /order/{id} → Cancel Order
 
+GET /order/{userId} → View Orders by User
 
-\ System Architecture
+UI/UX Guidelines
 
-\- \*\*User Management Microservice\*\*
+Simple, intuitive, and responsive design
 
-\- \*\*Product Management Microservice\*\*
+Consistent color schemes, fonts, and components
 
-\- \*\*Order Management Microservice\*\*
+Clear messages and feedback for user interactions
 
-
-
-Each service is independent, follows layered architecture (`Controller → Service → Repository → Entity`), and exposes REST APIs.
-
-
-
----
-
-
-
-\ API Endpoints (Sample)
-
-\ User Service
-
-\- `POST /user` → Create User  
-
-\- `PUT /user` → Update User  
-
-\- `DELETE /user` → Delete User  
-
-\- `GET /user` → Get All Users  
-
-\- `GET /user/{id}` → Get User by ID  
-
-\- `POST /user/login` → User Login  
-
-
-
-\### Product Service
-
-\- `POST /product` → Create Product  
-
-\- `PUT /product` → Update Product  
-
-\- `DELETE /product` → Delete Product  
-
-\- `GET /product` → List All Products  
-
-\- `GET /product/{id}` → Get Product Details  
-
-
-
-### Order Service
-
-\- `POST /cart/addProd` → Add Product to Cart  
-
-\- `PUT /cart/update` → Update Cart Item Quantity  
-
-\- `DELETE /cart/deleteProd/{id}` → Remove Cart Item  
-
-\- `POST /order` → Place Order  
-
-\- `PUT /order/{id}` → Cancel Order  
-
-\- `GET /order/{userId}` → View Orders by User  
-
-
-
----
-
-
-
-\ UI/UX Guidelines
-
-\- Simple, intuitive, and responsive design.
-
-\- Consistent color schemes, fonts, and components.
-
-\- Clear messages and feedback for user interactions.
-
-\- Angular Routing for navigation between modules.
-
+Angular Routing for navigation between modules
