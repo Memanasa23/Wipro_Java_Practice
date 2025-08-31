@@ -1,8 +1,8 @@
-\# Mini E-Commerce Application (Capstone Project)
+\ Mini E-Commerce Application (Capstone Project)
 
 
 
-\## Overview
+\ Overview
 
 This project is a \*\*Mini E-Commerce Application\*\* built as part of the Capstone Assessment using \*\*Angular, Spring Boot, and MySQL\*\*.  
 
@@ -18,7 +18,7 @@ The application follows a \*\*sprint-based agile methodology\*\* and ensures sca
 
 
 
-\## Problem Statement
+\ Problem Statement
 
 Develop a mini e-commerce application where:
 
@@ -34,7 +34,7 @@ Develop a mini e-commerce application where:
 
 
 
-\## Actors
+\ Actors
 
 \- \*\*Admin\*\*
 
@@ -56,9 +56,9 @@ Develop a mini e-commerce application where:
 
 
 
-\## Core Features
+\ Core Features
 
-\### User Management
+\ User Management
 
 \- Register and log in as a customer.
 
@@ -68,7 +68,7 @@ Develop a mini e-commerce application where:
 
 
 
-\### Product Management (Admin only)
+\ Product Management (Admin only)
 
 \- Add new products with details (name, description, price, quantity).
 
@@ -80,7 +80,7 @@ Develop a mini e-commerce application where:
 
 
 
-\### Order Management
+\ Order Management
 
 \- Add products to cart.
 
@@ -98,7 +98,7 @@ Develop a mini e-commerce application where:
 
 
 
-\## Tech Stack
+\ Tech Stack
 
 \- \*\*Frontend:\*\* Angular, HTML, CSS, Bootstrap  
 
@@ -118,7 +118,7 @@ Develop a mini e-commerce application where:
 
 
 
-\## System Architecture
+\ System Architecture
 
 \- \*\*User Management Microservice\*\*
 
@@ -136,9 +136,9 @@ Each service is independent, follows layered architecture (`Controller → Servi
 
 
 
-\## API Endpoints (Sample)
+\ API Endpoints (Sample)
 
-\### User Service
+\ User Service
 
 \- `POST /user` → Create User  
 
@@ -168,7 +168,7 @@ Each service is independent, follows layered architecture (`Controller → Servi
 
 
 
-\### Order Service
+### Order Service
 
 \- `POST /cart/addProd` → Add Product to Cart  
 
@@ -188,7 +188,7 @@ Each service is independent, follows layered architecture (`Controller → Servi
 
 
 
-\## UI/UX Guidelines
+\ UI/UX Guidelines
 
 \- Simple, intuitive, and responsive design.
 
