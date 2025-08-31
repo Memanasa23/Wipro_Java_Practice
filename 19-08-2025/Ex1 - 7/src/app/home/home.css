@@ -1,0 +1,11 @@
+/* .fruit-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;  
+  justify-content: center;
+} */
+.fruit-list {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}

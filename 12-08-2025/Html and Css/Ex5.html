@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ex5 - CSS Selectors Example</title>
+    <style>
+        h1 { 
+            font-size: 40px;
+            text-align: center;
+        }
+        
+        * { 
+            color: green;
+        }
+        
+        #header { 
+            background-color: lightblue;
+        }
+        
+        .class1 {
+            color: aqua;
+            font-style: italic;
+        }
+        
+        .class2 { 
+            color: red;
+            font-weight: bold;
+        }
+        
+        .class3 { 
+            color: blue;
+            font-size: 50px;
+        }
+        
+        h1, h2, h3 {
+            color: purple;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="header">This is H1 with ID 'header'</h1>
+
+    <h2 class="class1">This is H2 with class 'class1'</h2>
+
+    <h3 class="class2">This is H3 with class 'class2'</h3>
+
+    <p class="class3">This is a paragraph with class 'class3'.</p>
+
+    <p class="class1 class2">This paragraph has both 'class1' and 'class2'.</p>
+
+    <p id="header" class="class3">This paragraph has ID 'header' and class 'class3'.</p>
+
+</body>
+</html>

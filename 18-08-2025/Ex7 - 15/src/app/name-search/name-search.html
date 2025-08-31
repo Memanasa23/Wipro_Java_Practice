@@ -1,0 +1,9 @@
+<h3>Name Search Filter</h3>
+
+<input type="text" [(ngModel)]="searchText" class="form-control mb-3" placeholder="Type a name..." />
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let name of filteredNames">
+    {{ name }}
+  </li>
+</ul>

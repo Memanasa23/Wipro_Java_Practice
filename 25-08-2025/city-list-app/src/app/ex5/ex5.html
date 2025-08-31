@@ -1,0 +1,49 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+    @if (registrationForm.get('name')?.hasError('required') && registrationForm.get('name')?.touched) {
+      <mat-error>Name is required</mat-error>
+    }
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+    @if (registrationForm.get('email')?.hasError('required') && registrationForm.get('email')?.touched) {
+      <mat-error>Email is required</mat-error>
+    }
+    @if (registrationForm.get('email')?.hasError('email') && registrationForm.get('email')?.touched) {
+      <mat-error>Please enter a valid email</mat-error>
+    }
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Date of Birth</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dob" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    @if (registrationForm.get('dob')?.hasError('required') && registrationForm.get('dob')?.touched) {
+      <mat-error>Date of Birth is required</mat-error>
+    }
+  </mat-form-field>
+  <br>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Subject of Study</mat-label>
+    <mat-select formControlName="subject">
+      @for (sub of subjects; track sub) {
+        <mat-option [value]="sub">{{ sub }}</mat-option>
+      }
+    </mat-select>
+    @if (registrationForm.get('subject')?.hasError('required') && registrationForm.get('subject')?.touched) {
+      <mat-error>Please select a subject</mat-error>
+    }
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" type="submit" [disabled]="registrationForm.invalid">
+    Register
+  </button>
+
+</form>

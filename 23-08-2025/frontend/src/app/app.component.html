@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <h1 class="nav-title">{{ title }}</h1>
+    <div class="nav-links">
+      <a routerLink="/foods" routerLinkActive="active">Foods</a>
+      <div *ngIf="!authService.isLoggedIn()">
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+        <a routerLink="/register" routerLinkActive="active">Register</a>
+      </div>
+      <div *ngIf="authService.isLoggedIn()">
+        <span>Welcome, {{ authService.getCurrentUser()?.firstName }}!</span>
+        <button (click)="logout()" class="logout-btn">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

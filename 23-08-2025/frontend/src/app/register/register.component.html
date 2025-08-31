@@ -1,0 +1,137 @@
+<div class="register-container">
+  <div class="register-card">
+    <h2>Register for BookMyFood</h2>
+    
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            class="form-control"
+            [class.is-invalid]="f['firstName'].invalid && f['firstName'].touched"
+          >
+          <div *ngIf="f['firstName'].invalid && f['firstName'].touched" class="invalid-feedback">
+            <div *ngIf="f['firstName'].errors?.['required']">First name is required</div>
+            <div *ngIf="f['firstName'].errors?.['minlength']">First name must be at least 2 characters</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            class="form-control"
+            [class.is-invalid]="f['lastName'].invalid && f['lastName'].touched"
+          >
+          <div *ngIf="f['lastName'].invalid && f['lastName'].touched" class="invalid-feedback">
+            <div *ngIf="f['lastName'].errors?.['required']">Last name is required</div>
+            <div *ngIf="f['lastName'].errors?.['minlength']">Last name must be at least 2 characters</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          [class.is-invalid]="f['email'].invalid && f['email'].touched"
+        >
+        <div *ngIf="f['email'].invalid && f['email'].touched" class="invalid-feedback">
+          <div *ngIf="f['email'].errors?.['required']">Email is required</div>
+          <div *ngIf="f['email'].errors?.['email']">Please enter a valid email</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="tel"
+          id="phone"
+          formControlName="phone"
+          class="form-control"
+          [class.is-invalid]="f['phone'].invalid && f['phone'].touched"
+        >
+        <div *ngIf="f['phone'].invalid && f['phone'].touched" class="invalid-feedback">
+          <div *ngIf="f['phone'].errors?.['required']">Phone is required</div>
+          <div *ngIf="f['phone'].errors?.['pattern']">Please enter a valid phone number</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <textarea
+          id="address"
+          formControlName="address"
+          class="form-control"
+          rows="3"
+          [class.is-invalid]="f['address'].invalid && f['address'].touched"
+        ></textarea>
+        <div *ngIf="f['address'].invalid && f['address'].touched" class="invalid-feedback">
+          <div *ngIf="f['address'].errors?.['required']">Address is required</div>
+          <div *ngIf="f['address'].errors?.['minlength']">Address must be at least 10 characters</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            formControlName="password"
+            class="form-control"
+            [class.is-invalid]="f['password'].invalid && f['password'].touched"
+          >
+          <div *ngIf="f['password'].invalid && f['password'].touched" class="invalid-feedback">
+            <div *ngIf="f['password'].errors?.['required']">Password is required</div>
+            <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            formControlName="confirmPassword"
+            class="form-control"
+            [class.is-invalid]="f['confirmPassword'].invalid && f['confirmPassword'].touched"
+          >
+          <div *ngIf="f['confirmPassword'].invalid && f['confirmPassword'].touched" class="invalid-feedback">
+            <div *ngIf="f['confirmPassword'].errors?.['required']">Please confirm your password</div>
+            <div *ngIf="f['confirmPassword'].errors?.['passwordMismatch']">Passwords do not match</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="success-message" *ngIf="success">
+        {{ success }}
+      </div>
+
+      <div class="error-message" *ngIf="error">
+        {{ error }}
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid || loading"
+        class="btn-register"
+      >
+        <span *ngIf="loading">Creating Account...</span>
+        <span *ngIf="!loading">Register</span>
+      </button>
+    </form>
+
+    <div class="login-link">
+      <p>Already have an account? <a routerLink="/login">Login here</a></p>
+    </div>
+  </div>
+</div>

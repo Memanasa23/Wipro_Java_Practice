@@ -1,0 +1,15 @@
+.app1 {
+  background-color: rgb(6, 242, 6);
+  color: white;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.app2 {
+  background-color: orange;
+  color: black;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}

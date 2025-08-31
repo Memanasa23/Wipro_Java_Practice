@@ -1,0 +1,54 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Login to BookMyFood</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form-control"
+          [class.is-invalid]="f['email'].invalid && f['email'].touched"
+        >
+        <div *ngIf="f['email'].invalid && f['email'].touched" class="invalid-feedback">
+          <div *ngIf="f['email'].errors?.['required']">Email is required</div>
+          <div *ngIf="f['email'].errors?.['email']">Please enter a valid email</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+          [class.is-invalid]="f['password'].invalid && f['password'].touched"
+        >
+        <div *ngIf="f['password'].invalid && f['password'].touched" class="invalid-feedback">
+          <div *ngIf="f['password'].errors?.['required']">Password is required</div>
+          <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 6 characters</div>
+        </div>
+      </div>
+
+      <div class="error-message" *ngIf="error">
+        {{ error }}
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="loginForm.invalid || loading"
+        class="btn-login"
+      >
+        <span *ngIf="loading">Logging in...</span>
+        <span *ngIf="!loading">Login</span>
+      </button>
+    </form>
+
+    <div class="register-link">
+      <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+    </div>
+  </div>
+</div>

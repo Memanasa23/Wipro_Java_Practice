@@ -1,0 +1,16 @@
+<div class="add-task-form">
+  <label for="description">Task Description:</label>
+  <input id="description" type="text" [(ngModel)]="newDescription" placeholder="Enter task description">
+
+  <label for="category">Task Category:</label>
+  <select id="category" [(ngModel)]="newCategory">
+    <option value="Work">Work</option>
+    <option value="Study">Study</option>
+    <option value="Exercise">Exercise</option>
+    <option value="Personal">Personal</option>
+  </select>
+
+  <button (click)="addTask()">Add Task</button>
+</div>
+
+<app-task-list [tasks]="tasks" (remove)="removeTask($event)"></app-task-list>

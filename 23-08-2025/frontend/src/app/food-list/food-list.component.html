@@ -1,0 +1,69 @@
+<div class="food-list-container">
+  <div class="header-section">
+    <h2>Our Delicious Foods</h2>
+    <div class="cart-info" *ngIf="authService.isLoggedIn()">
+      <span class="cart-count">Cart Items: {{ cartItemsCount }}</span>
+    </div>
+  </div>
+
+  <div class="filters-section">
+    <div class="search-bar">
+      <input
+        type="text"
+        [(ngModel)]="searchQuery"
+        (input)="searchFoods()"
+        placeholder="Search for foods..."
+        class="search-input"
+      >
+    </div>
+
+    <div class="category-filter">
+      <select [(ngModel)]="selectedCategory" (change)="filterByCategory()" class="category-select">
+        <option value="">All Categories</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+
+    <button (click)="clearFilters()" class="clear-btn">Clear Filters</button>
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    <p>Loading delicious foods...</p>
+  </div>
+
+  <div class="food-grid" *ngIf="!loading">
+    <div class="food-card" *ngFor="let food of filteredFoods">
+      <img [src]="food.imageUrl" [alt]="food.name" class="food-image" 
+           onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+      
+      <div class="food-info">
+        <h3 class="food-name">{{ food.name }}</h3>
+        <p class="food-description">{{ food.description }}</p>
+        <p class="food-category">Category: {{ food.category }}</p>
+        
+        <div class="food-details">
+          <span class="food-price">₹{{ food.price }}</span>
+          <span class="food-rating" *ngIf="food.rating">⭐ {{ food.rating }}</span>
+          <span class="prep-time" *ngIf="food.preparationTime">🕐 {{ food.preparationTime }}min</span>
+        </div>
+
+        <div class="availability" [ngClass]="{'available': food.availability, 'unavailable': !food.availability}">
+          {{ food.availability ? 'Available' : 'Not Available' }}
+        </div>
+
+        <button 
+          (click)="addToCart(food)" 
+          [disabled]="!food.availability"
+          class="add-to-cart-btn"
+          [ngClass]="{'disabled': !food.availability}"
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-results" *ngIf="!loading && filteredFoods.length === 0">
+    <p>No foods found matching your criteria.</p>
+  </div>
+</div>
