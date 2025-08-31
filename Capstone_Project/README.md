@@ -1,5 +1,7 @@
 # Mini E-Commerce Application (Capstone Project)
 
+https://drive.google.com/file/d/1ovMHh2MuKHqIZ4-m32sxd_C5eSkb5m63/view?usp=sharing (Click to see the demo of my project)
+
 ## Overview
 
 This project is a **Mini E-Commerce Application** built as part of the Capstone Assessment using **Angular, Spring Boot, and MySQL**.
