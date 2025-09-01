@@ -23,14 +23,23 @@
           <h2 class="card-title">{{ product.name }}</h2>
           <p class="card-text">{{ product.description }}</p>
           <p class="card-text"><strong class="h4 text-primary">${{ product.price }}</strong></p>
+          
+          <div class="product-details mb-3">
+            <p><strong>Category:</strong> {{ product.category }}</p>
+            <p><strong>Manufacturer:</strong> {{ product.manufacturer }}</p>
+            <p><strong>Unit of Measure:</strong> {{ product.uom }}</p>
+            <p><strong>Rating:</strong> {{ product.rating }}/5</p>
+            @if (product.manufactureDate) {
+              <p><strong>Manufacture Date:</strong> {{ product.manufactureDate | date:'mediumDate' }}</p>
+            }
+          </div>
+          
           <p class="card-text">
-            <span class="badge" [ngClass]="{
-              'bg-success': product.quantity > 10,
-              'bg-warning': product.quantity > 0 && product.quantity <= 10,
-              'bg-danger': product.quantity === 0
-            }">
-              {{ product.quantity > 0 ? 'In stock: ' + product.quantity : 'Out of stock' }}
-            </span>
+            @if (product.quantity > 0) {
+              <span class="badge bg-success">In stock: {{ product.quantity }}</span>
+            } @else {
+              <span class="badge bg-danger">Out of stock</span>
+            }
           </p>
           
           @if (authService.isLoggedIn() && product.quantity > 0) {

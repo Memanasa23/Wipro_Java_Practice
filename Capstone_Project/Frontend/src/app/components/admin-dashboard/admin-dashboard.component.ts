@@ -24,8 +24,12 @@ export class AdminDashboardComponent implements OnInit {
   newProduct: Product = {
     name: '',
     description: '',
+    category: '',
+    manufacturer: '',
     price: 0,
     quantity: 0,
+    uom: '',
+    rating: 0,
     imageUrl: ''
   };
   editingProduct: Product | null = null;
@@ -83,7 +87,18 @@ export class AdminDashboardComponent implements OnInit {
     this.productService.createProduct(this.newProduct).subscribe({
       next: (product) => {
         this.products.push(product);
-        this.newProduct = { name: '', description: '', price: 0, quantity: 0, imageUrl: '' };
+        // Reset form with all required fields
+        this.newProduct = { 
+          name: '', 
+          description: '', 
+          category: '',
+          manufacturer: '',
+          price: 0, 
+          quantity: 0, 
+          uom: '',
+          rating: 0,
+          imageUrl: '' 
+        };
         alert('Product added successfully!');
       },
       error: (error) => {

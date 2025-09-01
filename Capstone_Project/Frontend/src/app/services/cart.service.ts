@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
 import { CartItem } from '../models/cart-item.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   private storageKey = 'cartItems';
+  private cartItemCount = new BehaviorSubject<number>(0);
 
-  constructor() {}
+  constructor() {
+    this.updateCartCount();
+  }
 
   getCartItems(): CartItem[] {
     const items = localStorage.getItem(this.storageKey);
@@ -26,6 +30,7 @@ export class CartService {
     }
 
     localStorage.setItem(this.storageKey, JSON.stringify(items));
+    this.updateCartCount();
   }
 
   updateQuantity(productId: number, quantity: number): void {
@@ -35,6 +40,7 @@ export class CartService {
     if (item) {
       item.quantity = quantity;
       localStorage.setItem(this.storageKey, JSON.stringify(items));
+      this.updateCartCount();
     }
   }
 
@@ -42,14 +48,24 @@ export class CartService {
     let items = this.getCartItems();
     items = items.filter(item => item.product.id !== productId);
     localStorage.setItem(this.storageKey, JSON.stringify(items));
+    this.updateCartCount();
   }
 
   clearCart(): void {
     localStorage.removeItem(this.storageKey);
+    this.updateCartCount();
   }
 
   getCartItemCount(): number {
     const items = this.getCartItems();
     return items.reduce((total, item) => total + item.quantity, 0);
+  }
+
+  getCartItemCountObservable() {
+    return this.cartItemCount.asObservable();
+  }
+
+  private updateCartCount(): void {
+    this.cartItemCount.next(this.getCartItemCount());
   }
 }

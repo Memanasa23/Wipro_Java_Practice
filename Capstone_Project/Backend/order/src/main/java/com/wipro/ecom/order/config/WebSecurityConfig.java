@@ -13,7 +13,7 @@ import com.wipro.ecom.order.filter.JwtFilter;
 @EnableMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
     private final JwtFilter jwtFilter;
-    
+
     public WebSecurityConfig(JwtFilter jwtFilter) {
         this.jwtFilter = jwtFilter;
     }
@@ -22,18 +22,21 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/v3/api-docs/**").permitAll()
+                .requestMatchers("/api-docs/**").permitAll()
+                .requestMatchers("/swagger-ui.html").permitAll()
+                .requestMatchers("/webjars/**").permitAll()
+                .requestMatchers("/swagger-resources/**").permitAll()
+                .requestMatchers("/configuration/**").permitAll()
 
-                .requestMatchers("/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/api-docs/**").permitAll()
-                
                 .requestMatchers("/api/orders/**").authenticated()
-                
+
                 .anyRequest().authenticated()
             )
-            .sessionManagement(session -> 
+            .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        
+
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

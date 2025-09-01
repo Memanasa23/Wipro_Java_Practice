@@ -8,6 +8,12 @@
   <div class="col-md-6">
     <input type="text" class="form-control" placeholder="Search products..." [(ngModel)]="searchTerm" (input)="searchProducts()">
   </div>
+  <div class="col-md-6">
+    <select class="form-select" [(ngModel)]="selectedCategory" (ngModelChange)="filterByCategory()">
+      <option value="">All Categories</option>
+      <option *ngFor="let cat of uniqueCategories" [value]="cat">{{ cat }}</option>
+    </select>
+  </div>
 </div>
 @if (isLoading) {
   <div class="text-center">
@@ -41,10 +47,19 @@
               {{ product.description }}
             </p>
             <p class="card-text"><strong>Price: ${{ product.price | number:'1.2-2' }}</strong></p>
-            <p class="card-text">In stock: {{ product.quantity }}</p>
+            <p class="card-text"><small class="text-muted">Category: {{ product.category }}</small></p>
+            <p class="card-text"><small class="text-muted">Manufacturer: {{ product.manufacturer }}</small></p>
+            <p class="card-text"><small class="text-muted">UOM: {{ product.uom }}</small></p>
+            <p class="card-text">
+              @if (product.quantity > 0) {
+                <span class="badge bg-success">In stock: {{ product.quantity }}</span>
+              } @else {
+                <span class="badge bg-danger">Out of stock</span>
+              }
+            </p>
           </div>
           <div class="card-footer">
-            @if (authService.isLoggedIn()) {
+            @if (authService.isLoggedIn() && product.quantity > 0) {
               <button class="btn btn-primary me-2" (click)="addToCart(product)">Add to Cart</button>
             }
             <button class="btn btn-info btn-sm" [routerLink]="['/products', product.id]">View Details</button>

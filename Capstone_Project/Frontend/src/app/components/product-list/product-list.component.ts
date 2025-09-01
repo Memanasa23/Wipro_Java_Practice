@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
 import { AuthService } from '../../services/auth.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
@@ -18,6 +18,8 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
   searchTerm = "";
+  selectedCategory = "";
+  uniqueCategories: string[] = [];
   isLoading = true;
   errorMessage = "";
 
@@ -36,6 +38,7 @@ export class ProductListComponent implements OnInit {
       next: (products) => {
         this.products = products;
         this.filteredProducts = products;
+        this.uniqueCategories = [...new Set(products.map(p => p.category))].sort();
         this.isLoading = false;
       },
       error: (error) => {
@@ -47,20 +50,27 @@ export class ProductListComponent implements OnInit {
   }
 
   searchProducts(): void {
-    if (!this.searchTerm) {
-      this.filteredProducts = this.products;
-      return;
-    }
-    
+    this.filterProducts();
+  }
+
+  filterByCategory(): void {
+    this.filterProducts();
+  }
+
+  private filterProducts(): void {
     this.filteredProducts = this.products.filter(product =>
-      product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      product.description.toLowerCase().includes(this.searchTerm.toLowerCase())
+      (product.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+       product.description.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+       product.category.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+       product.manufacturer.toLowerCase().includes(this.searchTerm.toLowerCase())) &&
+      (!this.selectedCategory || product.category === this.selectedCategory)
     );
   }
 
   addToCart(product: Product): void {
-    this.cartService.addToCart(product);
-    alert(`${product.name} added to cart!`);
+    if (product.quantity > 0) {
+      this.cartService.addToCart(product);
+    }
   }
 
   deleteProduct(id: number): void {
@@ -72,7 +82,6 @@ export class ProductListComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error deleting product:', error);
-          alert('Failed to delete product. Please try again.');
         }
       });
     }

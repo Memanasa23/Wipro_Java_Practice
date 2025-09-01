@@ -43,8 +43,15 @@ public class ProductServiceImpl implements ProductService {
             Product product = productOptional.get();
             product.setName(productDetails.getName());
             product.setDescription(productDetails.getDescription());
+            product.setCategory(productDetails.getCategory());
+            product.setManufacturer(productDetails.getManufacturer());
             product.setPrice(productDetails.getPrice());
             product.setQuantity(productDetails.getQuantity());
+            product.setUom(productDetails.getUom());
+            product.setRating(productDetails.getRating());
+            product.setImageUrl(productDetails.getImageUrl());
+            product.setManufactureDate(productDetails.getManufactureDate());
+            
             Product updated = productRepository.save(product);
             kafkaTemplate.send("product-events", "Product updated: " + updated.getName());
             return updated;

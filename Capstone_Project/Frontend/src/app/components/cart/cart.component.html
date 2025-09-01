@@ -10,6 +10,11 @@
         <tr>
           <th>Image</th>
           <th>Product</th>
+          <th>Category</th>
+          <th>Manufacturer</th>
+          <th>UOM</th>
+          <th>Rating</th>
+          <th>Manufacture Date</th>
           <th>Price</th>
           <th>Quantity</th>
           <th>Total</th>
@@ -28,6 +33,11 @@
               }
             </td>
             <td>{{ item.product.name }}</td>
+            <td>{{ item.product.category }}</td>
+            <td>{{ item.product.manufacturer || 'N/A' }}</td>
+            <td>{{ item.product.uom || 'N/A' }}</td>
+            <td>{{ item.product.rating ? (item.product.rating + '/5') : 'N/A' }}</td>
+            <td>{{ item.product.manufactureDate ? (item.product.manufactureDate | date:'shortDate') : 'N/A' }}</td>
             <td>${{ item.product.price | number:'1.2-2' }}</td>
             <td>
               <div class="input-group" style="width: 120px;">
@@ -47,7 +57,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4" class="text-end"><strong>Total:</strong></td>
+          <td colspan="9" class="text-end"><strong>Total:</strong></td>
           <td><strong>${{ totalAmount | number:'1.2-2' }}</strong></td>
           <td></td>
         </tr>
@@ -55,7 +65,7 @@
     </table>
   </div>
   <div class="text-end">
-    <button class="btn btn-success btn-lg" (click)="checkout()">
+    <button class="btn btn-success btn-lg" (click)="checkout()" [disabled]="isLoading">
       <i class="bi bi-credit-card"></i> Checkout
     </button>
   </div>

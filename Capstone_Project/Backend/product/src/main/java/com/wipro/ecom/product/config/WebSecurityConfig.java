@@ -13,7 +13,7 @@ import com.wipro.ecom.product.filter.JwtFilter;
 @EnableMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
     private final JwtFilter jwtFilter;
-    
+
     public WebSecurityConfig(JwtFilter jwtFilter) {
         this.jwtFilter = jwtFilter;
     }
@@ -24,20 +24,22 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // Allow public access to view products and Swagger
                 .requestMatchers("/api/products/public/**",
-                                "/api/products",           // Allow GET /api/products
-                                "/api/products/{id}",      // Allow GET /api/products/{id}
+                                "/api/products",
+                                "/api/products/{id}",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
-                                "/api-docs/**").permitAll()
-                
+                                "/api-docs/**",
+                                "/swagger-ui.html",
+                                "/webjars/**",
+                                "/swagger-resources/**",
+                                "/configuration/**").permitAll()
                 // Only ADMIN can create, update, delete products
                 .requestMatchers("/api/products/**").hasRole("ADMIN")
-                
                 .anyRequest().authenticated()
             )
-            .sessionManagement(session -> 
+            .sessionManagement(session ->
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        
+
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

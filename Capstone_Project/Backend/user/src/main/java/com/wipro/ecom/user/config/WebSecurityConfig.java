@@ -18,10 +18,7 @@ import com.wipro.ecom.user.filter.JwtFilter;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-    
-    // Remove JwtFilter dependency from constructor
-    // We'll inject it separately in the filter chain
-    
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -46,6 +43,14 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/api/users/register").permitAll()
+                .requestMatchers("/swagger-ui/**").permitAll()
+                .requestMatchers("/v3/api-docs/**").permitAll()
+                .requestMatchers("/api-docs/**").permitAll()
+                .requestMatchers("/swagger-ui.html").permitAll()
+                .requestMatchers("/webjars/**").permitAll()
+                .requestMatchers("/swagger-resources/**").permitAll()
+                .requestMatchers("/configuration/**").permitAll()
+                
                 .requestMatchers("/api/users/admin/**").hasRole("ADMIN")
                 .requestMatchers("/api/users/**").authenticated()
                 .anyRequest().authenticated()

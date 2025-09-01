@@ -45,9 +45,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(): void {
-    if (this.product) {
+    if (this.product && this.product.quantity > 0) {
       this.cartService.addToCart(this.product);
-      alert(`${this.product.name} added to cart!`);
     }
   }
 }
