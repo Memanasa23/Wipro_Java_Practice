@@ -1,6 +1,6 @@
 # Mini E-Commerce Application (Capstone Project)
 
-https://drive.google.com/file/d/1ovMHh2MuKHqIZ4-m32sxd_C5eSkb5m63/view?usp=sharing (Click to see the demo of my project)
+https://www.loom.com/share/41daf2823d1844e59e4106f028388775?sid=7d25bb1e-e313-4223-9c38-9a2cab836bc8 (Click to see the demo of my project)
 
 ## Overview
 
